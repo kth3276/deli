@@ -1,0 +1,6 @@
+django<2
+pillow
+django-extensions
+jsonfield
+fake-useragent
+requests
