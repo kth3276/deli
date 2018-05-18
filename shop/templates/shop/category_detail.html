@@ -1,0 +1,33 @@
+{% extends "shop/layout.html" %}
+
+{% block content %}
+    <h2>{{ category.name }}</h2>
+
+    <table>
+        <tbody>
+            {% for shop in category.shop_set.all%}
+            <tr>
+                <td>
+                    {% if shop.photo %}
+                        <a href="{{ shop.get_absolute_url }}">
+                            <img src="{{ shop.photo.url }}" alt="">
+                        </a>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ shop.get_absolute_url }}">
+                        {{ shop.name }}
+                    </a>
+                </td>
+                <td>{{ shop.desc }}</td>
+                <td>{{ shop.latlng }}</td>
+                <td>{{ shop.is_public }}</td>
+                <td>{{ shop.address }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <hr/>
+    <a href="{% url "shop:index" %}">대문</a>
+{% endblock %}

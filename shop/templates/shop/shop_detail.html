@@ -1,0 +1,34 @@
+{% extends "shop/layout.html" %}
+{% load humanize %}
+
+{% block content %}
+    <h2>{{ shop.name }}</h2>
+
+    <table>
+        <tbody>
+            {% for item in shop.item_set.all%}
+            <tr>
+                <td>
+                    {% if item.photo %}
+{#                        <a href="{{ item.get_absolute_url }}">#}
+                            <img src="{{ item.photo.url }}" style="width: 72px" />
+{#                        </a>#}
+                    {% endif %}
+                </td>
+                <td>
+{#                    <a href="{{ item.get_absolute_url }}">#}
+                        {{ item.name }}
+{#                    </a>#}
+                </td>
+                <td>{{ item.desc }}</td>
+                <td>{{ item.amount|intcomma }}</td>
+                <td>{{ item.is_public }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <hr/>
+    <a href="{% url "shop:index" %}">대문</a>
+    <a href="{{ shop.category.get_absolute_url }}">{{ shop.category.name }}으로 돌아가기</a>
+{% endblock %}
