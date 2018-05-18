@@ -23,7 +23,7 @@ class Shop(models.Model):
     latlng = models.CharField(max_length=100, blank=True)
     photo = models.ImageField(blank=True)
     is_public = models.BooleanField(default=False, db_index=True)
-    meta = JSONField()
+    meta = JSONField()  # PostgreSQL의 JSONField와 다름
 
     def __str__(self):
         return self.name
